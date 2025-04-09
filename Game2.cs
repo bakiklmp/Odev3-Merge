@@ -15,6 +15,10 @@ namespace MonoGameMergeGitYZTA
         private Color _squareColor = Color.CornflowerBlue; 
         private int _squareSize = 100;
 
+        private Vector2 _circlePosition;
+        private Color _circleColor = Color.IndianRed;
+        private int _circleRadius = 30;
+
         public Game2()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -27,6 +31,11 @@ namespace MonoGameMergeGitYZTA
             _squarePosition = new Vector2(
                 _graphics.PreferredBackBufferWidth / 2 - _squareSize / 2,
                 _graphics.PreferredBackBufferHeight / 2 - _squareSize / 2
+            );  
+
+            _circlePosition = new Vector2(
+                _squarePosition.X + _squareSize + 20, 
+                _squarePosition.Y + (_squareSize / 2) - _circleRadius 
             );
 
             base.Initialize();
@@ -61,6 +70,17 @@ namespace MonoGameMergeGitYZTA
                     _squareSize,
                     _squareSize),
                 _squareColor
+            );
+
+
+            _spriteBatch.Draw(
+                _pixelTexture,
+                new Rectangle(
+                    (int)_circlePosition.X,
+                    (int)_circlePosition.Y,
+                    _circleRadius * 2, 
+                    _circleRadius * 2),
+                _circleColor
             );
 
             _spriteBatch.End();
